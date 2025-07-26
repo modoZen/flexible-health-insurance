@@ -1,11 +1,12 @@
 import ic_phone from '/ic_phone_solid.svg';
 import rimac_logo from '/rimac_logo.svg';
+import { GridContainer } from '../GridContainer/GridContainer';
 import './Header.scss';
 
 export const Header = () => {
   return (
     <div className='header'>
-      <div className='header__container'>
+      <GridContainer>
         <div className='header__content'>
           <div className='header__left'>
             <img src={rimac_logo} alt='Rimac logo' />
@@ -18,7 +19,7 @@ export const Header = () => {
             </div>
           </div>
         </div>
-      </div>
+      </GridContainer>
     </div>
   );
 };
