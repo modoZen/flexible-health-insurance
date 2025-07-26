@@ -1,9 +1,10 @@
 import type { FormEventHandler } from 'react';
+import { Header } from './components/Header/Header';
+import { GridContainer } from './components/GridContainer/GridContainer';
+import { Footer } from './components/Footer/Footer';
 import heroMobile from '/hero_mobile.png';
 import heroDesk from '/hero_desk.png';
 import './App.scss';
-import { Header } from './components/Header/Header';
-import { GridContainer } from './components/GridContainer/GridContainer';
 
 function App() {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
@@ -85,6 +86,7 @@ function App() {
           </div>
         </GridContainer>
       </div>
+      <Footer />
     </>
   );
 }
