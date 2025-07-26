@@ -1,0 +1,14 @@
+.grid-container {
+  margin: 0 auto;
+  padding: 0 24px;
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 16px;
+
+  @media (min-width: 1024px) {
+    padding: 0 48px;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 20px;
+  }
+}
