@@ -2,6 +2,7 @@ import type { FormEventHandler } from 'react';
 import heroMobile from '/hero_mobile.png';
 import heroDesk from '/hero_desk.png';
 import './App.scss';
+import { Header } from './components/Header/Header';
 
 function App() {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
@@ -11,6 +12,7 @@ function App() {
 
   return (
     <>
+      <Header />
       <div className='hero'>
         <div className='hero__left'>
           <img className='hero__image hero__image--desktop' src={heroDesk} alt='Hero image' />
