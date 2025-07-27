@@ -1,15 +1,33 @@
-import type { FormEventHandler } from 'react';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Header } from './components/Header/Header';
 import { GridContainer } from './components/GridContainer/GridContainer';
 import { Footer } from './components/Footer/Footer';
+import { loginSchema } from './schema/login.schema';
+import type { LoginFormData } from './domain/login-form-data.type';
+import { documentTypeOptions } from './constants/document-types.const';
+
 import heroMobile from '/hero_mobile.png';
 import heroDesk from '/hero_desk.png';
 import './App.scss';
 
 function App() {
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    console.log('handleSubmit');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+    mode: 'onBlur',
+    shouldFocusError: false,
+  });
+
+  const onSubmit: SubmitHandler<LoginFormData> = (data) => {
+    if (!isValid) {
+      return;
+    }
+
+    console.log(data);
   };
 
   return (
@@ -40,39 +58,72 @@ function App() {
               Tú eliges cuánto pagar. Ingresa tus datos, cotiza y recibe nuestra asesoría, 100%
               online.
             </p>
-            <form className='form' onSubmit={handleSubmit}>
-              <div className='form__group'>
-                <div className='form__select'>
-                  <select className='form__select-field' name='typeDoc' id='typeDoc'>
-                    <option value=''>DNI</option>
-                    <option value=''>CE</option>
-                  </select>
+            <form className='form' onSubmit={handleSubmit(onSubmit)}>
+              <div>
+                <div className='form__group'>
+                  <div className='form__select'>
+                    <select {...register('documentType')} className='form__select-field'>
+                      {documentTypeOptions.map(({ text, value }) => (
+                        <option key={value} value={value}>
+                          {text}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className='form__input'>
+                    <input
+                      id='documentNumber'
+                      placeholder=' '
+                      {...register('documentNumber')}
+                      className={`form__input-field form__input-field--select ${errors.documentNumber && 'form__input-field--error'}`}
+                      type='text'
+                    />
+                    <label className='form__input-label' htmlFor='documentNumber'>
+                      Tipo de documento
+                    </label>
+                  </div>
                 </div>
+                {errors.documentNumber && (
+                  <div className='form__error'>{errors.documentNumber.message}</div>
+                )}
+              </div>
+              <div>
                 <div className='form__input'>
                   <input
-                    className='form__input-field form__input-field--select'
-                    type='text'
-                    name='nroDoc'
-                    id='nroDoc'
+                    id='phone'
+                    placeholder=' '
+                    {...register('phone')}
+                    className={`form__input-field ${errors.phone && 'form__input-field--error'}`}
+                    type='tel'
                   />
-                  <label className='form__input-label' htmlFor='nroDoc'>
-                    Tipo de documento
+                  <label className='form__input-label' htmlFor='phone'>
+                    Celular
                   </label>
                 </div>
+                {errors.phone && <div className='form__error'>{errors.phone.message}</div>}
               </div>
-              <div className='form__input'>
-                <input className='form__input-field' type='tel' name='phone' id='phone' />
-                <label className='form__input-label' htmlFor='phone'>
-                  Celular
-                </label>
+              <div>
+                <div className='checkbox'>
+                  <input
+                    {...register('privacyPolicy')}
+                    className='checkbox__input'
+                    type='checkbox'
+                    id='privacyPolicy'
+                  />
+                  <label className='checkbox__label' htmlFor='privacyPolicy'></label>
+                  <span className='checkbox__text'>Acepto la Política de Privacidad</span>
+                </div>
+                {errors.privacyPolicy && (
+                  <div className='form__error'>{errors.privacyPolicy.message}</div>
+                )}
               </div>
               <div className='checkbox'>
-                <input className='checkbox__input' type='checkbox' id='privacyPolicy' />
-                <label className='checkbox__label' htmlFor='privacyPolicy'></label>
-                <span className='checkbox__text'>Acepto la Política de Privacidad</span>
-              </div>
-              <div className='checkbox'>
-                <input className='checkbox__input' type='checkbox' id='commercialPolicy' />
+                <input
+                  {...register('commercialPolicy')}
+                  className='checkbox__input'
+                  type='checkbox'
+                  id='commercialPolicy'
+                />
                 <label className='checkbox__label' htmlFor='commercialPolicy'></label>
                 <span className='checkbox__text'>
                   Acepto la Política Comunicaciones Comerciales

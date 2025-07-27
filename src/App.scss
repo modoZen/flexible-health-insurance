@@ -163,6 +163,17 @@
         font-size: 12px;
         color: #03050f;
       }
+
+      &:not(:placeholder-shown) + .form__input-label {
+        transform: translateY(-7px) scale(1);
+        top: 16px;
+        font-size: 12px;
+        color: #03050f;
+      }
+
+      &--error {
+        border-color: red;
+      }
     }
 
     &-label {
@@ -186,6 +197,16 @@
     font-size: 14px;
     text-decoration: underline;
     margin-bottom: 20px;
+  }
+
+  &__error {
+    color: red;
+    font-size: 12px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    @media (min-width: 1024px) {
+      font-size: 16px;
+    }
   }
 }
 
