@@ -11,31 +11,40 @@ import { Button } from '../../components/Button/Button';
 import heroMobile from '/hero_mobile.png';
 import heroDesk from '/hero_desk.png';
 
+import { actions } from '../../api/action';
+import { useAppDispatch } from '../../store';
+
 import './HomePage.scss';
+import { useNavigate } from 'react-router-dom';
 
 export const HomePage = () => {
+  const distpach = useAppDispatch();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(loginSchema),
     mode: 'onBlur',
     shouldFocusError: false,
   });
 
-  const onSubmit: SubmitHandler<LoginFormData> = (data) => {
-    if (!isValid) {
-      return;
+  const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
+    const { documentNumber, documentType, phone } = data;
+
+    try {
+      await actions.getUser(distpach, {
+        phone,
+        documentNumber,
+        documentType,
+      });
+
+      navigate('/plans');
+    } catch (error) {
+      console.error(error);
     }
-
-    console.log(data);
-
-    // TODO call api
-
-    // TODO set data in redux
-
-    // TODO redirect to plans page
   };
 
   return (
@@ -125,17 +134,22 @@ export const HomePage = () => {
                   <div className='form__error'>{errors.privacyPolicy.message}</div>
                 )}
               </div>
-              <div className='checkbox'>
-                <input
-                  {...register('commercialPolicy')}
-                  className='checkbox__input'
-                  type='checkbox'
-                  id='commercialPolicy'
-                />
-                <label className='checkbox__label' htmlFor='commercialPolicy'></label>
-                <span className='checkbox__text'>
-                  Acepto la Política Comunicaciones Comerciales
-                </span>
+              <div>
+                <div className='checkbox'>
+                  <input
+                    {...register('commercialPolicy')}
+                    className='checkbox__input'
+                    type='checkbox'
+                    id='commercialPolicy'
+                  />
+                  <label className='checkbox__label' htmlFor='commercialPolicy'></label>
+                  <span className='checkbox__text'>
+                    Acepto la Política Comunicaciones Comerciales
+                  </span>
+                </div>
+                {errors.commercialPolicy && (
+                  <div className='form__error'>{errors.commercialPolicy.message}</div>
+                )}
               </div>
               <span className='form__terms'>Aplican Términos y Condiciones.</span>
               <Button mode='black' type='submit'>
