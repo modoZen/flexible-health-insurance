@@ -6,6 +6,7 @@ import { loginSchema } from '../../schema/login.schema';
 import type { LoginFormData } from '../../domain/login-form-data.type';
 import { documentTypeOptions } from '../../constants/document-types.const';
 import { Footer } from '../../components/Footer/Footer';
+import { Button } from '../../components/Button/Button';
 
 import heroMobile from '/hero_mobile.png';
 import heroDesk from '/hero_desk.png';
@@ -137,9 +138,9 @@ export const HomePage = () => {
                 </span>
               </div>
               <span className='form__terms'>Aplican Términos y Condiciones.</span>
-              <button type='submit' className='button'>
+              <Button mode='black' type='submit'>
                 Cotiza aquí
-              </button>
+              </Button>
             </form>
           </div>
         </GridContainer>
