@@ -1,0 +1,68 @@
+.plan {
+  &__card {
+    padding: 40px 24px;
+    border-radius: 24px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 1px 32px #aeacf359;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (min-width: 1024px) {
+      width: 288px;
+    }
+
+    &-main {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: flex-start;
+      border-bottom: #d7dbf5 1px solid;
+      padding-bottom: 20px;
+    }
+
+    &-name {
+      color: #141938;
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    &-price-text,
+    &-price-number {
+      font-weight: 900;
+    }
+
+    &-price-text {
+      color: #7981b2;
+      font-size: 18px;
+    }
+
+    &-price-number {
+      color: #141938;
+      font-size: 20px;
+    }
+
+    &-descriptions {
+      margin: 16px 0;
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+
+    &-description {
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: #141938;
+      margin-bottom: 16px;
+    }
+
+    &-button {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
