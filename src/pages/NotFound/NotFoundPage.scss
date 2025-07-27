@@ -1,0 +1,17 @@
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  &__container {
+    text-align: center;
+  }
+
+  &__text {
+    color: var(--gray_1);
+    font-size: 22px;
+    padding: 20px 20px;
+    margin-bottom: 20px;
+  }
+}
