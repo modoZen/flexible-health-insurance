@@ -5,7 +5,7 @@ import './Footer.scss';
 
 export const Footer = () => {
   return (
-    <div className='footer'>
+    <footer className='footer'>
       <GridContainer>
         <div className='footer__content'>
           <div className='footer__left'>
@@ -19,6 +19,6 @@ export const Footer = () => {
           </div>
         </div>
       </GridContainer>
-    </div>
+    </footer>
   );
 };
