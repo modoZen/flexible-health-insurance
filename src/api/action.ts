@@ -1,6 +1,7 @@
 import type { User } from '../domain/user.interface';
 import type { AppDispatch } from '../store';
 import { setPlans } from '../store/slices/planSlice';
+import { finishLoading, startLoading } from '../store/slices/uiSlice';
 import { setUser } from '../store/slices/userSlice';
 import { request } from './request';
 
@@ -9,7 +10,7 @@ const getUser = async (
   formData: Omit<User, 'name' | 'lastName' | 'birthDay'>,
 ) => {
   try {
-    // TODO loading true
+    dispatch(startLoading());
 
     const userReponse = await request.getUser();
 
@@ -20,19 +21,19 @@ const getUser = async (
 
     dispatch(setUser(user));
   } finally {
-    // TODO loading false
+    dispatch(finishLoading());
   }
 };
 
 const getPlans = async (dispatch: AppDispatch) => {
   try {
-    // TODO loading true
+    dispatch(startLoading());
 
     const plans = await request.getPlans();
 
     dispatch(setPlans(plans));
   } finally {
-    // TODO loading false
+    dispatch(finishLoading());
   }
 };
 
