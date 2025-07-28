@@ -1,69 +1,57 @@
-# React + TypeScript + Vite
+# flexible-health-insurance
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Librerías y herramientas utilizadas
 
-Currently, two official plugins are available:
+### Vite
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Utilice este empaquetador moderno para la mejora de la experiencia de desarrollo pues es rápido a la hora de ejecutar además de no necesitar mucha configuración.
 
-## Expanding the ESLint configuration
+### TypeScript
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Utilice esta libreria para poder trabajar con archivos con extesion .ts y .tsx
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Redux-toolkit
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Utilice esta libreria para la gestion de mis estados globales mediante el uso de reducers y actions. Esta version es la recomendada por encima de redux. De esta forma podre compartir datos como el usuario entre componentes y las vistas/páginas.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+### SASS
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Utilice esta libreria para escrbir los estilos con una sintaxis más poderosa. Utilice metodologia BEM.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+### hook-form
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+Utilice esta libreria para manejar todo respecto al fomurlario: capturar los datos, validar los campos, hacerlos obligatorios y mostrar los mensajes de error
+
+### Vitest
+
+Utilicé esta librería para realizar pruebas unitarias. Es rápida y compatible con Vite, lo que permite una configuración simple y una integración fluida en proyectos Vite + React. Su sintaxis es similar a Jest, pero con tiempos de ejecución más eficientes.
+
+### ESLint
+
+Utilicé esta herramienta para mantener un código limpio y consistente. Me ayudó a detectar errores de estilo y posibles bugs de forma automática durante el desarrollo.
+
+### Prettier
+
+Utilicé esta herramienta para formatear el código de manera automática, manteniendo una estructura clara y uniforme en todo el proyecto.
+
+### Husky
+
+Configuré esta herramienta para ejecutar validaciones antes de realizar commits, asegurando que el código cumpla con las reglas definidas por ESLint y Prettier.
+
+### Lint-staged
+
+Lo utilicé junto a Husky para aplicar los linters y formateadores únicamente sobre los archivos que van a ser commitados, optimizando el proceso de validación del código.
+
+## Scripts disponibles
+
+Los comandos del proyecto son:
+
+### `npm run dev`
+
+Ejecuta la aplicación en el modo de desarrollo.\
+Abra [http://localhost:5173](http://localhost:5173) para verlo en el navegador.
+
+### `npm run build`
+
+Construye la aplicación para producción en la carpeta `dist`.\
+Empaqueta correctamente React en modo de producción y optimiza la compilación para obtener el mejor rendimiento.
