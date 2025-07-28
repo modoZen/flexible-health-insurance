@@ -96,7 +96,7 @@ export const HomePage = () => {
                       type='text'
                     />
                     <label className='form__input-label' htmlFor='documentNumber'>
-                      Tipo de documento
+                      Nro. de documento
                     </label>
                   </div>
                 </div>
@@ -126,6 +126,7 @@ export const HomePage = () => {
                     className='checkbox__input'
                     type='checkbox'
                     id='privacyPolicy'
+                    placeholder='Acepto la Política de Privacidad'
                   />
                   <label className='checkbox__label' htmlFor='privacyPolicy'></label>
                   <span className='checkbox__text'>Acepto la Política de Privacidad</span>
@@ -141,6 +142,7 @@ export const HomePage = () => {
                     className='checkbox__input'
                     type='checkbox'
                     id='commercialPolicy'
+                    placeholder='Acepto la Política Comunicaciones Comerciales'
                   />
                   <label className='checkbox__label' htmlFor='commercialPolicy'></label>
                   <span className='checkbox__text'>

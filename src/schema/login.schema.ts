@@ -5,8 +5,8 @@ export const loginSchema = yup.object({
   documentType: yup.mixed<DocumentTypeEnum>().required(),
   documentNumber: yup
     .string()
-    .matches(/^\d{8}$/, 'Debe un número de documento válido')
-    .required('Debe ingresar un número de documento'),
+    .required('Debe ingresar un número de documento')
+    .matches(/^\d{8}$/, 'Debe un número de documento válido'),
   phone: yup
     .string()
     .required('Debe ingresar un número de celular')
