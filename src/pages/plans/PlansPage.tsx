@@ -24,17 +24,24 @@ export const PlansPage = () => {
   const dispatch = useAppDispatch();
   const { plans, selectedPlan } = useAppSelector((state) => state.plan);
   const user = useAppSelector((state) => state.user.user);
+  const [currentStep, setCurrentStep] = useState<number>(1);
   const [selectedPerson, setSelectedPerson] = useState<PersonType | null>(null);
 
-  const [currentStep, setCurrentStep] = useState<number>(1);
+  const isDiscounted = selectedPerson === 'someone';
 
   if (!user) {
     return null;
   }
 
-  const filteredPlans = plans.filter((plan) => {
-    return plan.age > getAgeFromDateOfBirthday(user.birthDay);
-  });
+  const finalPlans = plans
+    .filter((plan) => {
+      return plan.age > getAgeFromDateOfBirthday(user.birthDay);
+    })
+    .map((plan) => {
+      const discountedPrice = isDiscounted ? +(plan.price * 0.95).toFixed(2) : plan.price;
+
+      return { ...plan, price: discountedPrice };
+    });
 
   const goBack = () => {
     if (currentStep !== 1) {
@@ -139,7 +146,7 @@ export const PlansPage = () => {
 
             {selectedPerson && (
               <div className='plan__list'>
-                {filteredPlans.map((plan) => (
+                {finalPlans.map((plan) => (
                   <PlanCard key={plan.name} {...plan} onClick={() => handleSelectPlan(plan)} />
                 ))}
               </div>
