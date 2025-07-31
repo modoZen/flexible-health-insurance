@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
 import { HomePage } from './HomePage';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '../../store';
 import * as actionModule from '../../api/action';
-import { describe, expect, it, vi } from 'vitest';
-import userEvent from '@testing-library/user-event';
 
 const mockNavigate = vi.fn();
 const mockDispatch = vi.fn();
@@ -31,12 +31,16 @@ vi.mock('../../store', async () => {
   };
 });
 
+vi.mock('../../components/Layout/Layout', () => ({
+  Layout: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+}));
+
 const renderHomePage = () =>
   render(
     <Provider store={store}>
-      <BrowserRouter>
+      <MemoryRouter>
         <HomePage />
-      </BrowserRouter>
+      </MemoryRouter>
     </Provider>,
   );
 

@@ -1,15 +1,19 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { PlansPage } from './PlansPage';
+import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { store } from '../../store';
+import { PlansPage } from './PlansPage';
 import { setUser } from '../../store/slices/userSlice';
 import { setPlans } from '../../store/slices/planSlice';
 import { mockUser } from '../../__mocks__/user.mock';
 import { mockPlans } from '../../__mocks__/plan.mock';
-import userEvent from '@testing-library/user-event';
 import { actions } from '../../api/action';
+
+vi.mock('../../components/Layout/Layout', () => ({
+  Layout: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+}));
 
 describe('PlansPage', () => {
   beforeEach(() => {

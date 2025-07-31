@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { GridContainer } from '../../components/GridContainer/GridContainer';
-import { Header } from '../../components/Header/Header';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { removeUser } from '../../store/slices/userSlice';
 import { actions } from '../../api/action';
 import { PlanCard } from '../../components/PlanCard/PlanCard';
 import { setSelectedPlan } from '../../store/slices/planSlice';
 import { SummaryCard } from '../../components/SummaryCard/SummaryCard';
+import { Layout } from '../../components/Layout/Layout';
 import { getAgeFromDateOfBirthday } from '../../utils/ageFromDateOfBirthday';
 import type { PersonType } from '../../domain/person-type.type';
 import type { Plan } from '../../domain/plan.interface';
@@ -63,103 +63,109 @@ export const PlansPage = () => {
 
   return (
     <>
-      <Header />
-      <div className='steps'>
-        <div className='steps__content steps__content--mobile'>
-          <img src={icon_back_neutral} alt='icon_back' onClick={goBack} />
-          <div>Paso {currentStep} de 2</div>
-          <div className='steps__bar'>
-            <div className='steps__bar-fill'></div>
-          </div>
-        </div>
-        <div className='steps__content steps__content--desktop'>
-          <div className='steps__item'>
-            <div className={`steps__number ${currentStep === 1 ? 'steps__number--active' : ''}`}>
-              1
-            </div>
-            <div className={`steps__label ${currentStep === 1 ? 'steps__label--active' : ''}`}>
-              Planes y coberturas
+      <Layout
+        hasHeader={true}
+        hasFooter={false}
+        title='Rimac Salud Flexible | Arma tu plan'
+        description='Escoge tu plan y cobertura del seguro.'
+      >
+        <div className='steps'>
+          <div className='steps__content steps__content--mobile'>
+            <img src={icon_back_neutral} alt='icon_back' onClick={goBack} />
+            <div>Paso {currentStep} de 2</div>
+            <div className='steps__bar'>
+              <div className='steps__bar-fill'></div>
             </div>
           </div>
-
-          <img src={line} alt='decoracion' />
-
-          <div className='steps__item'>
-            <div className={`steps__number ${currentStep === 2 ? 'steps__number--active' : ''}`}>
-              2
-            </div>
-            <div className={`steps__label ${currentStep === 2 ? 'steps__label--active' : ''}`}>
-              Resumen
-            </div>
-          </div>
-        </div>
-      </div>
-      <GridContainer>
-        <div className='back'>
-          <button className='back-button' onClick={goBack}>
-            <img src={icon_back_blue} alt='icono para regresar' />
-            <span className='back-text'>Volver</span>
-          </button>
-        </div>
-        {currentStep === 1 && (
-          <>
-            <div className='person'>
-              <div className='person__title'>Rocío ¿Para quién deseas cotizar?</div>
-              <div className='person__description'>
-                Selecciona la opción que se ajuste más a tus necesidades.
+          <div className='steps__content steps__content--desktop'>
+            <div className='steps__item'>
+              <div className={`steps__number ${currentStep === 1 ? 'steps__number--active' : ''}`}>
+                1
               </div>
+              <div className={`steps__label ${currentStep === 1 ? 'steps__label--active' : ''}`}>
+                Planes y coberturas
+              </div>
+            </div>
 
-              <div className='person__cards'>
-                <div
-                  className={`person__card ${selectedPerson === 'me' ? 'person__card--active' : ''}`}
-                  onClick={() => handleSelectPerson('me')}
-                >
-                  <div
-                    className={`person__circle ${selectedPerson === 'me' ? 'person__circle--checked' : ''}`}
-                  >
-                    {selectedPerson === 'me' && <img src={ic_check} alt='check' />}
-                  </div>
-                  <img src={ic_protection_light} alt='protección' />
-                  <div className='person__card-title'>Para mí</div>
-                  <span className='person__card-description'>
-                    Cotiza tu seguro de salud y agrega familiares si así lo deseas.
-                  </span>
+            <img src={line} alt='decoracion' />
+
+            <div className='steps__item'>
+              <div className={`steps__number ${currentStep === 2 ? 'steps__number--active' : ''}`}>
+                2
+              </div>
+              <div className={`steps__label ${currentStep === 2 ? 'steps__label--active' : ''}`}>
+                Resumen
+              </div>
+            </div>
+          </div>
+        </div>
+        <GridContainer>
+          <div className='back'>
+            <button className='back-button' onClick={goBack}>
+              <img src={icon_back_blue} alt='icono para regresar' />
+              <span className='back-text'>Volver</span>
+            </button>
+          </div>
+          {currentStep === 1 && (
+            <>
+              <div className='person'>
+                <div className='person__title'>Rocío ¿Para quién deseas cotizar?</div>
+                <div className='person__description'>
+                  Selecciona la opción que se ajuste más a tus necesidades.
                 </div>
 
-                <div
-                  className={`person__card ${selectedPerson === 'someone' ? 'person__card--active' : ''}`}
-                  onClick={() => handleSelectPerson('someone')}
-                >
+                <div className='person__cards'>
                   <div
-                    className={`person__circle ${selectedPerson === 'someone' ? 'person__circle--checked' : ''}`}
+                    className={`person__card ${selectedPerson === 'me' ? 'person__card--active' : ''}`}
+                    onClick={() => handleSelectPerson('me')}
                   >
-                    {selectedPerson === 'someone' && <img src={ic_check} alt='check' />}
+                    <div
+                      className={`person__circle ${selectedPerson === 'me' ? 'person__circle--checked' : ''}`}
+                    >
+                      {selectedPerson === 'me' && <img src={ic_check} alt='check' />}
+                    </div>
+                    <img src={ic_protection_light} alt='protección' />
+                    <div className='person__card-title'>Para mí</div>
+                    <span className='person__card-description'>
+                      Cotiza tu seguro de salud y agrega familiares si así lo deseas.
+                    </span>
                   </div>
-                  <img src={ic_add_user_light} alt='protección' />
-                  <div className='person__card-title'>Para alguien más</div>
-                  <span className='person__card-description'>
-                    Puedes cotizar para tus padres, hijos u otros familiares.
-                  </span>
+
+                  <div
+                    className={`person__card ${selectedPerson === 'someone' ? 'person__card--active' : ''}`}
+                    onClick={() => handleSelectPerson('someone')}
+                  >
+                    <div
+                      className={`person__circle ${selectedPerson === 'someone' ? 'person__circle--checked' : ''}`}
+                    >
+                      {selectedPerson === 'someone' && <img src={ic_check} alt='check' />}
+                    </div>
+                    <img src={ic_add_user_light} alt='protección' />
+                    <div className='person__card-title'>Para alguien más</div>
+                    <span className='person__card-description'>
+                      Puedes cotizar para tus padres, hijos u otros familiares.
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {selectedPerson && (
-              <div className='plan__list'>
-                {finalPlans.map((plan) => (
-                  <PlanCard key={plan.name} {...plan} onClick={() => handleSelectPlan(plan)} />
-                ))}
-              </div>
-            )}
-          </>
-        )}
-        {currentStep === 2 && (
-          <div className='summary'>
-            <div className='summary__title'>Resumen del seguro </div>
-            <SummaryCard {...user} plan={selectedPlan!} />
-          </div>
-        )}
-      </GridContainer>
+              {selectedPerson && (
+                <div className='plan__list'>
+                  {finalPlans.map((plan) => (
+                    <PlanCard key={plan.name} {...plan} onClick={() => handleSelectPlan(plan)} />
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+          {currentStep === 2 && (
+            <div className='summary'>
+              <div className='summary__title'>Resumen del seguro </div>
+              <SummaryCard {...user} plan={selectedPlan!} />
+            </div>
+          )}
+        </GridContainer>
+      </Layout>
     </>
   );
 };
