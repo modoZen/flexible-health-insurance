@@ -16,7 +16,7 @@
     }
 
     &-message {
-      color: #141938;
+      color: var(--neutrals-700);
       font-weight: 900;
       font-size: 10px;
       margin-bottom: 8px;
@@ -29,7 +29,7 @@
     }
 
     &-name {
-      color: #141938;
+      color: var(--neutrals-700);
       font-size: 20px;
       font-weight: 900;
     }
@@ -38,13 +38,13 @@
       margin: 16px 0 0;
 
       &-title {
-        color: #141938;
+        color: var(--neutrals-700);
         font-size: 16px;
         font-weight: 700;
       }
 
       &-detail {
-        color: #141938;
+        color: var(--neutrals-700);
         font-size: 14px;
         font-weight: 400;
         margin: 8px 0;

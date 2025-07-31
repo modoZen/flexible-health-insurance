@@ -1,7 +1,7 @@
 .footer {
   margin-top: 80px;
-  background-color: #03050f;
-  color: #ffffff;
+  background-color: var(--grey-100);
+  color: var(--grey-0);
 
   &__content {
     grid-column: 1 / -1;

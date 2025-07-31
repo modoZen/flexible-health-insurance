@@ -1,7 +1,7 @@
 .button {
   position: relative;
   cursor: pointer;
-  color: #ffffff;
+  color: var(--grey-0);
   outline: none;
   padding: 18px 40px;
   border-radius: 40px;
@@ -33,25 +33,25 @@
 }
 
 .button--black {
-  background-color: #03050f;
-  color: #ffffff;
+  background-color: var(--grey-100);
+  color: var(--grey-0);
 
   &::before {
-    background-color: #ffffff;
+    background-color: var(--grey-0);
   }
 
   &:hover {
-    color: #03050f;
+    color: var(--grey-100);
   }
 }
 
 .button--red {
   background-color: #ff1c44;
-  color: #ffffff;
+  color: var(--grey-0);
   border: red 1px solid;
 
   &::before {
-    background-color: #ffffff;
+    background-color: var(--grey-0);
   }
 
   &:hover {

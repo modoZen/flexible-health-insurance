@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: #141938;
+    color: var(--neutrals-700);
 
     @media (min-width: 1024px) {
       display: none;
@@ -53,10 +53,10 @@
     justify-content: center;
 
     &--active {
-      color: #141938;
+      color: var(--neutrals-700);
       font-weight: 500;
-      background: #4f4fff;
-      color: #ffffff;
+      background: var(--blue-berry-600);
+      color: var(--grey-0);
     }
   }
 
@@ -66,7 +66,7 @@
     font-size: 16px;
 
     &--active {
-      color: #141938;
+      color: var(--neutrals-700);
       font-weight: 700;
     }
   }
@@ -79,7 +79,7 @@
     width: 200px;
 
     &-fill {
-      background-color: #4f4fff;
+      background-color: var(--blue-berry-600);
       width: 50%;
       height: 100%;
       border-radius: 40px;
@@ -106,7 +106,7 @@
   }
 
   &-text {
-    color: #4f4fff;
+    color: var(--blue-berry-600);
     font-weight: 700;
     font-size: 18px;
     margin-left: 8px;
@@ -121,7 +121,7 @@
   }
 
   &__title {
-    color: #141938;
+    color: var(--neutrals-700);
     font-size: 40px;
     margin-bottom: 40px;
     margin-top: 40px;
@@ -141,7 +141,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  color: #141938;
+  color: var(--neutrals-700);
   padding: 40px 0;
   grid-column: 1 / -1;
 
@@ -196,7 +196,7 @@
     }
 
     &--active {
-      border: 2px solid #03050f;
+      border: 2px solid var(--grey-100);
     }
   }
 
@@ -208,7 +208,7 @@
     border-radius: 50%;
 
     &--checked {
-      background-color: #389e0d;
+      background-color: var(--success);
       border: none;
       display: flex;
       align-items: center;
