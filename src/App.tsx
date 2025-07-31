@@ -1,10 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
-import { HomePage } from './pages/home/HomePage';
-import { NotFoundPage } from './pages/NotFound/NotFoundPage';
-import { PlansPage } from './pages/plans/PlansPage';
+import { lazy, Suspense } from 'react';
 import { PrivateRoute } from './router/PrivateRoute';
 import { useAppSelector } from './store';
 import { Loader } from './components/Loader/Loader';
+
+const HomePage = lazy(() => import('./pages/home/HomePage').then((m) => ({ default: m.HomePage })));
+const PlansPage = lazy(() =>
+  import('./pages/plans/PlansPage').then((m) => ({ default: m.PlansPage })),
+);
+const NotFoundPage = lazy(() =>
+  import('./pages/NotFound/NotFoundPage').then((m) => ({ default: m.NotFoundPage })),
+);
 
 function App() {
   const { user } = useAppSelector((state) => state.user);
@@ -13,13 +19,15 @@ function App() {
 
   return (
     <div>
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
-          <Route path='/plans' element={<PlansPage />} />
-        </Route>
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+            <Route path='/plans' element={<PlansPage />} />
+          </Route>
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
       {isLoading && <Loader />}
     </div>
   );
