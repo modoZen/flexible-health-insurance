@@ -74,7 +74,9 @@ export const PlansPage = () => {
             <img src={icon_back_neutral} alt='icon_back' onClick={goBack} />
             <div>Paso {currentStep} de 2</div>
             <div className='steps__bar'>
-              <div className='steps__bar-fill'></div>
+              <div
+                className={`steps__bar-fill ${currentStep === 2 ? 'steps__bar-fill--completed' : ''}`}
+              ></div>
             </div>
           </div>
           <div className='steps__content steps__content--desktop'>

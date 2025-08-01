@@ -83,6 +83,10 @@
       width: 50%;
       height: 100%;
       border-radius: 40px;
+
+      &--completed {
+        width: 100%;
+      }
     }
   }
 }
