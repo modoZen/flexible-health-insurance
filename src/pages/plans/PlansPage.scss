@@ -238,11 +238,12 @@
     margin-bottom: 40px;
     padding: 0 16px;
     width: 100%;
-    grid-column: 2 / -2;
     flex-wrap: wrap;
     gap: 12px;
+    grid-column: 1 / -1;
 
     @media (min-width: 1024px) {
+      grid-column: 2 / -2;
       padding: 0;
       display: flex;
       justify-content: space-between;

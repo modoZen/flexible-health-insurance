@@ -9,8 +9,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 16px;
 
     @media (min-width: 1024px) {
+      margin-bottom: 0px;
       width: 288px;
     }
 
