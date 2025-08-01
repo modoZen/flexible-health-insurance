@@ -9,7 +9,7 @@ import { setUser } from '../../store/slices/userSlice';
 import { setPlans } from '../../store/slices/planSlice';
 import { mockUser } from '../../__mocks__/user.mock';
 import { mockPlans } from '../../__mocks__/plan.mock';
-import { actions } from '../../api/action';
+import { actions } from '../../store/actions/action';
 
 vi.mock('../../components/Layout/Layout', () => ({
   Layout: ({ children }: { children: React.ReactNode }) => <>{children}</>,

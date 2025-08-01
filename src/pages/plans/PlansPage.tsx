@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { GridContainer } from '../../components/GridContainer/GridContainer';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { removeUser } from '../../store/slices/userSlice';
-import { actions } from '../../api/action';
+import { actions } from '../../store/actions/action';
 import { PlanCard } from '../../components/PlanCard/PlanCard';
 import { setSelectedPlan } from '../../store/slices/planSlice';
 import { SummaryCard } from '../../components/SummaryCard/SummaryCard';

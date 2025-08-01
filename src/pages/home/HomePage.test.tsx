@@ -5,7 +5,7 @@ import { HomePage } from './HomePage';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '../../store';
-import * as actionModule from '../../api/action';
+import * as actionModule from '../../store/actions/action';
 
 const mockNavigate = vi.fn();
 const mockDispatch = vi.fn();

@@ -11,7 +11,7 @@ import { Button } from '../../components/Button/Button';
 import heroMobile from '/hero_mobile.png';
 import heroDesk from '/hero_desk.png';
 
-import { actions } from '../../api/action';
+import { actions } from '../../store/actions/action';
 import { useAppDispatch } from '../../store';
 
 import './HomePage.scss';

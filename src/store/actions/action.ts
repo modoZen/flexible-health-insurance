@@ -1,9 +1,9 @@
-import type { User } from '../domain/user.interface';
-import type { AppDispatch } from '../store';
-import { setPlans } from '../store/slices/planSlice';
-import { finishLoading, startLoading } from '../store/slices/uiSlice';
-import { setUser } from '../store/slices/userSlice';
-import { request } from './request';
+import type { User } from '../../domain/user.interface';
+import type { AppDispatch } from '..';
+import { setPlans } from '../slices/planSlice';
+import { finishLoading, startLoading } from '../slices/uiSlice';
+import { setUser } from '../slices/userSlice';
+import { request } from '../../api/request';
 
 const getUser = async (
   dispatch: AppDispatch,
